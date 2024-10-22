@@ -5,7 +5,7 @@ import "easymde/dist/easymde.min.css";
 import axios from "axios";
 import { TextField, Button } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface IssueForm {
   title: string;
