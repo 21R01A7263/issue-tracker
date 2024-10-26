@@ -10,6 +10,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IssueSchema } from "@/validationSchemas";
 import { z } from "zod";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 type IssueForm = z.infer<typeof IssueSchema>;
 
@@ -22,10 +23,7 @@ const NewIssue = () => {
   const [error, setError] = useState("");
 
   return (
-    <div className="max-w-lg space-y-3">
-      {error && <Callout.Root color="red">
-        <Callout.Text>{error}</Callout.Text>
-        </Callout.Root>}
+    <div className="max-w-lg space-y-1">
       <form
         className="max-w-lg space-y-3"
         onSubmit={handleSubmit(async (data) => {
@@ -42,7 +40,7 @@ const NewIssue = () => {
             <MagnifyingGlassIcon height="16" width="16" />
           </TextField.Slot>
         </TextField.Root>
-        {errors.title && <Text color="red" as="p">{errors.title.message}</Text>}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -50,7 +48,7 @@ const NewIssue = () => {
             <SimpleMDE placeholder="MarkDown Description" {...field} />
           )}
         />
-        {errors.description && <Text color="red">{errors.description.message}</Text>}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button>Submit New Issue</Button>
       </form>
     </div>
