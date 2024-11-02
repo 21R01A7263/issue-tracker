@@ -36,7 +36,7 @@ const loading = () => {
                 <Skeleton />
               </Table.Cell>
               <Table.Cell align="center" className="hidden md:table-cell">
-                <Skeleton />
+                <Skeleton width="5rem" />
               </Table.Cell>
               <Table.Cell align="center" className="hidden md:table-cell">
                 <Skeleton />
