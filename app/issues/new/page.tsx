@@ -1,5 +1,6 @@
 "use client";
 import { useForm, Controller } from "react-hook-form";
+import dynamic from "next/dynamic";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import axios from "axios";
@@ -13,9 +14,13 @@ import { z } from "zod";
 import Spinner from "@/app/components/Spinner";
 import ErrorMessage from "@/app/components/ErrorMessage";
 
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
+
 type IssueForm = z.infer<typeof IssueSchema>;
 
-const NewIssue = () => {
+const NewIssue = async () => {
   const router = useRouter();
   const {
     register,
